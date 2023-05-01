@@ -13,6 +13,14 @@ public class ImageService {
     }
 
     public Iterable<Image> getProjectImages(Long projectId) {
-        return imageRepository.findByProjectId(projectId);
+        System.out.println(("************************      I'm in the service       *****************"));
+        Iterable<Image> images = imageRepository.findByProjectId(projectId.toString());
+//        Iterable<Image> images = imageRepository.findAll();
+        System.out.println("+++++++++++++++++++++++++" + images);
+        return images;
+    }
+
+    public Image add(Image image) {
+        return imageRepository.save(image);
     }
 }

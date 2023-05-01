@@ -24,6 +24,11 @@ public class Image {
         this.projectId = projectId;
     }
 
+    public Image(String image, String projectId) {
+        this.image = image;
+        this.projectId = projectId;
+    }
+
     public Image() {
     }
 
