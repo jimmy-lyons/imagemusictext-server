@@ -30,4 +30,29 @@ public class ProjectsControllerIntegrationTest {
             .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(0)));
     }
+
+    @Test
+    void add_savesProjectToDatabase() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/projects/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{" +
+                                "\"name\": \"Blondie\", " +
+                                "\"heading\": \"Against The Odds (1974-1882)\", " +
+                                "\"client\": \"Universal Music\", " +
+                                "\"description\": \"Foo Bar Baz\"}"
+                        ))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath(".id").exists())
+                .andExpect(jsonPath("$.name").value("Blondie"))
+                .andExpect(jsonPath("$.heading").value("Against The Odds (1974-1882)"))
+                .andExpect(jsonPath("$.client").value("Universal Music"))
+                .andExpect(jsonPath("$.description").value("Foo Bar Baz"));
+
+        mvc.perform(MockMvcRequestBuilders.get("/projects").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].name").value("Blondie"));
+    }
 }

@@ -17,4 +17,8 @@ public class ProjectsService {
     public Iterable<Project> index() {
         return projectsRepository.findAll();
     }
+
+    public Project add(Project project) {
+        return projectsRepository.save(project);
+    }
 }

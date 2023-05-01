@@ -1,8 +1,8 @@
 package com.estuaryenglish.imagemusictextServer.project;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProjectsController {
@@ -12,5 +12,10 @@ public class ProjectsController {
     @GetMapping("/projects")
     public Iterable<Project> index() {
         return projectsService.index();
+    }
+
+    @PostMapping("/projects/add")
+    public Project add(@RequestBody @Valid Project project) {
+        return projectsService.add(project);
     }
 }
