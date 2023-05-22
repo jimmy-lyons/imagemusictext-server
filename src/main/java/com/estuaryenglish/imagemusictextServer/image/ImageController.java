@@ -9,9 +9,9 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/projectImages/{id}")
     public Iterable<Image> getImagesByProjectId(@PathVariable Long id) {
-        System.out.println("***********************************************    " + id);
         return imageService.getProjectImages(id);
     }
 

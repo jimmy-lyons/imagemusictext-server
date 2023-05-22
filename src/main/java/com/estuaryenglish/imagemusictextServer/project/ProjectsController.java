@@ -9,6 +9,7 @@ public class ProjectsController {
     @Autowired
     private ProjectsService projectsService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/projects")
     public Iterable<Project> index() {
         return projectsService.index();
