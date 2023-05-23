@@ -9,7 +9,7 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://www.imagemusictext.co.uk"})
     @GetMapping("/projectImages/{id}")
     public Iterable<Image> getImagesByProjectId(@PathVariable Long id) {
         return imageService.getProjectImages(id);
