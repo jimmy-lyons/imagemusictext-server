@@ -28,6 +28,7 @@ public class Project {
         this.description = description;
         this.client = client;
     }
+    public Project() {};
 
     public Long getId() {
         return id;
